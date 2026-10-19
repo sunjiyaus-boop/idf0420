@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="인천장애인연합회 — 장애인과 비장애인이 함께 어우러지는 지역사회를 만들어 갑니다. 사랑의 한그릇 나눔, 공지사항, 기부금 공개.">
+<meta property="og:title" content="인천장애인연합회">
+<meta property="og:description" content="차별 없는 동행, 나눔으로 하나되다">
+<meta property="og:image" content="https://idf0420.com/img/2024-07-1.jpg">
+<link rel="icon" href="img/logo.png">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
+<title>인천장애인연합회</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 한 장짜리 기관 홈페이지 — 좁은 본문 열 + 사진이 넓게 펼쳐지는 띠, 봉사 조끼의 주황을 단 하나의 강조색으로 */
+:root{
+  --bg:#f6f7f9;
+  --surface:#ffffff;
+  --ink:#13264a;
+  --text:#27303d;
+  --muted:#5b6575;
+  --line:#dde2ea;
+  --accent:#d9480f;      /* 사랑의 한그릇 봉사 조끼 */
+  --accent-soft:#fdebe2;
+  --blue:#1673b5;
+  --band:#13264a;
+  --band-text:#eef2f8;
+  --display:"Gowun Batang","Nanum Myeongjo",serif;
+  --body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1522;--surface:#162033;--ink:#e6ecf6;--text:#d5dce7;--muted:#9aa6b8;--line:#2a3750;
+  --accent:#ff7d45;--accent-soft:#3a2219;--blue:#5fb3ec;--band:#091020;--band-text:#e6ecf6;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1522;--surface:#162033;--ink:#e6ecf6;--text:#d5dce7;--muted:#9aa6b8;--line:#2a3750;
+  --accent:#ff7d45;--accent-soft:#3a2219;--blue:#5fb3ec;--band:#091020;--band-text:#e6ecf6;color-scheme:dark}
+
+html{font-size:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+html.fs-l{font-size:112.5%} html.fs-xl{font-size:125%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:1.0625rem;line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{color:var(--ink);text-wrap:balance;margin:0;line-height:1.3}
+h2{font-family:var(--display);font-size:clamp(1.75rem,3.2vw,2.375rem)}
+h3{font-size:1.1875rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#fff;padding:8px 14px;z-index:99;border-radius:6px}
+.skip:focus{left:16px}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);flex-shrink:0}
+.brand img{width:44px;height:44px}
+.brand b{font-size:1.25rem;font-weight:900;letter-spacing:-.02em;display:block;line-height:1.2}
+.brand small{display:block;font-size:.6875rem;color:var(--muted);letter-spacing:.04em}
+nav.main{margin-left:auto}
+nav.main ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
+nav.main a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:500;font-size:.96875rem}
+nav.main a:hover{background:var(--accent-soft);color:var(--accent)}
+.tools{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.fs{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.fs button{background:none;border:0;color:var(--text);padding:4px 9px;cursor:pointer;font-family:var(--body);font-weight:700;line-height:1.4}
+.fs button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.fs button:nth-child(1){font-size:.8125rem}.fs button:nth-child(2){font-size:.9375rem}.fs button:nth-child(3){font-size:1.0625rem}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;font:700 .9375rem var(--body);cursor:pointer}
+@media (max-width:1020px){
+  .menu-btn{display:block}
+  nav.main{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);display:none}
+  nav.main.open{display:block}
+  nav.main ul{flex-direction:column;padding:8px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
+  nav.main a{padding:12px}
+  .tools{margin-left:auto}
+}
+@media (max-width:460px){
+  .top .wrap{gap:8px;min-height:60px}
+  .brand{gap:7px;flex-shrink:1;min-width:0}
+  .brand img{width:34px;height:34px}
+  .brand b{font-size:1.0625rem;white-space:nowrap}
+  .brand small{display:none}
+  .tools{gap:4px}
+  .fs button{padding:4px 6px}
+  .menu-btn,.admin-btn{padding:5px 9px;font-size:.875rem}
+  html{scroll-padding-top:70px}
+  section.sec{padding-block:56px}
+  .sec-head{margin-bottom:24px}
+  .hero .wrap{padding-block:28px}
+  .greet .hello{font-size:1.5rem}
+  .don-sum{gap:20px}
+  .don-sum b{font-size:1.5rem}
+  .info > div{grid-template-columns:60px minmax(0,1fr)}
+}
+@media (max-width:360px){.fs button:nth-child(2){display:none}}
+/* 휴대폰에서 누르기 쉬운 크기 */
+@media (pointer:coarse){.filters button,.row-tools button,.mini,.copy{min-height:40px;padding-inline:14px}.lb button{min-height:44px}}
+
+/* hero */
+.hero{position:relative;background:var(--band);color:var(--band-text);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:center;padding-block:56px}
+.hero .eyebrow{color:#ffb08a;font-weight:700;letter-spacing:.08em;font-size:.875rem}
+.hero h1{color:var(--band-text);font-family:var(--display);font-size:clamp(2.125rem,5vw,3.5rem);margin:12px 0 20px;line-height:1.25}
+.hero h1 em{font-style:normal;color:#ff9a6b}
+.hero p.lead{font-size:1.125rem;color:#cdd6e4;max-width:34em}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{border:1.5px solid #6d7d99;color:var(--band-text)}
+.hero figure{margin:0;position:relative}
+.hero figure img{border-radius:6px;aspect-ratio:3/2;object-fit:cover;width:100%}
+.hero figcaption{font-size:.8125rem;color:#a9b5c8;margin-top:8px}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr;padding-block:36px}}
+
+/* sections */
+section.sec{padding-block:80px}
+section.sec + section.sec{border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:36px}
+.label{color:var(--accent);font-weight:700;font-size:.8125rem;letter-spacing:.12em}
+
+/* greeting */
+.greet{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:start}
+.greet img{border-radius:6px;width:100%;aspect-ratio:56/50;object-fit:cover}
+.greet .body{display:flex;flex-direction:column;gap:18px;max-width:38em}
+.greet .hello{font-family:var(--display);font-size:1.75rem;color:var(--ink)}
+.greet .first{font-weight:700;color:var(--ink);font-size:1.125rem}
+.sign{align-self:flex-end;margin-top:8px;color:var(--muted)}
+.sign b{font-family:var(--display);font-size:1.625rem;color:var(--ink);margin-left:8px}
+@media (max-width:820px){.greet{grid-template-columns:1fr;gap:28px}}
+
+/* about */
+.slogan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.slogan p{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.125rem);color:var(--ink);padding:32px;line-height:1.4}
+.slogan p span{color:var(--blue)}
+.slogan img{width:100%;height:100%;object-fit:cover}
+.about-text{max-width:44em;margin:36px 0 44px;display:flex;flex-direction:column;gap:14px}
+.acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;padding:0;margin:0}
+.acts li{display:flex;flex-direction:column;gap:14px}
+.acts img{width:100%;aspect-ratio:282/169;object-fit:cover;border-radius:6px}
+.acts h3{font-size:1.0625rem;line-height:1.55}
+.closing{margin-top:44px;font-weight:500;color:var(--ink);max-width:44em}
+@media (max-width:900px){.acts{grid-template-columns:repeat(2,minmax(0,1fr))}.slogan{grid-template-columns:1fr}}
+@media (max-width:440px){.acts{grid-template-columns:1fr}}
+
+/* history */
+.hist{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.hist > li{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
+.hist .yr{font-size:2.25rem;font-weight:900;color:var(--ink);line-height:1.1;font-variant-numeric:tabular-nums}
+.hist ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.hist ul li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px}
+.hist .mo{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.hist .partner{background:var(--accent-soft);padding:0 4px;border-radius:3px}
+@media (max-width:600px){.hist > li{grid-template-columns:1fr;gap:12px}.hist .yr{font-size:1.75rem}}
+
+/* news / gallery */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:6px 16px;border-radius:999px;font:500 .9375rem var(--body);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.post{display:flex;flex-direction:column;gap:12px;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.post .ph{position:relative;border-radius:6px;overflow:hidden}
+.post img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .3s}
+.post:hover img{transform:scale(1.03)}
+.post .count{position:absolute;right:10px;bottom:10px;background:rgba(10,18,32,.78);color:#fff;font-size:.8125rem;padding:2px 10px;border-radius:999px}
+.post .tag{color:var(--accent);font-size:.8125rem;font-weight:700}
+.post h3{font-size:1.125rem}
+.post .meta{font-size:.875rem;color:var(--muted)}
+@media (max-width:900px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.posts{grid-template-columns:1fr}}
+
+/* notices */
+.board{border-top:2px solid var(--ink);list-style:none;margin:0;padding:0}
+.board > li{border-bottom:1px solid var(--line)}
+.board details summary{display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 4px;cursor:pointer;list-style:none}
+.board summary::-webkit-details-marker{display:none}
+.board .kind{font-size:.8125rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:4px;text-align:center;padding:1px 0}
+.board .ttl{font-weight:700;color:var(--ink)}
+.board .date{color:var(--muted);font-size:.875rem;font-variant-numeric:tabular-nums}
+.board .content{padding:4px 4px 28px 100px;display:flex;flex-direction:column;gap:16px;max-width:52em}
+.board .content img{max-width:420px;width:100%;border-radius:6px;border:1px solid var(--line)}
+@media (max-width:600px){.board details summary{grid-template-columns:1fr;gap:4px}.board .kind{justify-self:start;padding:1px 8px}.board .content{padding-left:4px}}
+.gm-info{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0}
+.gm-info dt{font-weight:700;color:var(--ink)}
+.gm-info dd{margin:0}
+
+/* donation */
+.don{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:40px;align-items:start}
+.don-sum{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.don-sum div{display:flex;flex-direction:column}
+.don-sum span{font-size:.875rem;color:var(--muted)}
+.don-sum b{font-size:2rem;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.96875rem}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{color:var(--muted);font-weight:500;font-size:.875rem}
+tfoot td{font-weight:700;color:var(--ink);border-bottom:2px solid var(--ink)}
+.don .note{font-size:.875rem;color:var(--muted);margin-top:12px}
+.doc{display:flex;flex-direction:column;gap:8px}
+.doc button{padding:0;border:1px solid var(--line);background:var(--surface);cursor:zoom-in;border-radius:6px;overflow:hidden}
+.doc span{font-size:.875rem;color:var(--muted)}
+@media (max-width:820px){.don{grid-template-columns:1fr}.doc{max-width:360px}}
+
+/* location */
+.loc{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:36px;align-items:start}
+.loc .map{border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.loc .map img{width:100%}
+.info{margin:0;border-top:2px solid var(--ink)}
+.info > div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;padding:16px 4px;border-bottom:1px solid var(--line);align-items:center}
+.info dt{font-weight:700;color:var(--ink)}
+.info dd{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.copy{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:500 .8125rem var(--body);padding:2px 10px;border-radius:6px;cursor:pointer}
+.maplinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.maplinks a{border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;padding:8px 14px;border-radius:8px;font-weight:500;font-size:.9375rem}
+@media (max-width:820px){.loc{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--band);color:#b6c1d3;padding-block:40px;font-size:.9375rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center}
+footer .brand b{color:var(--band-text)}
+footer .brand small{color:#8d9ab0}
+footer address{font-style:normal;line-height:1.8}
+
+/* lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);width:100%;color:#fff}
+dialog.lb::backdrop{background:rgba(6,10,20,.9)}
+.lb-inner{display:flex;flex-direction:column;gap:12px}
+.lb-img{position:relative;display:flex;justify-content:center}
+.lb-img img{max-height:76vh;width:auto;max-width:100%;border-radius:4px}
+.lb-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.lb-bar .t{font-weight:700;font-size:1.0625rem;flex:1;min-width:0}
+.lb-bar .n{font-variant-numeric:tabular-nums;color:#b8c2d3}
+.lb button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:8px 14px;font:700 .9375rem var(--body);cursor:pointer}
+.lb button:hover{background:rgba(255,255,255,.22)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:8px 18px;border-radius:999px;font-size:.9375rem;z-index:50}
+
+/* ---- 관리(편집) 기능 ---- */
+.admin-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:5px 11px;font:700 .875rem var(--body);cursor:pointer}
+.admin-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.admin-only{display:none!important}
+body.admin .admin-only{display:flex!important}
+.admin-bar{gap:10px;flex-wrap:wrap;align-items:center;margin:-12px 0 24px;padding:12px 14px;border:1.5px dashed var(--accent);border-radius:8px;background:var(--accent-soft)}
+.admin-bar p{font-size:.875rem;color:var(--muted);flex:1;min-width:12em}
+.add-btn{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:9px 18px;font:700 .9375rem var(--body);cursor:pointer}
+.row-tools{gap:6px;flex-wrap:wrap}
+.row-tools button,.mini{background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:3px 10px;font:500 .8125rem var(--body);cursor:pointer}
+.row-tools button.danger,.mini.danger{color:#c92a2a;border-color:#e8b4b4}
+.row-tools button.armed{background:#c92a2a;color:#fff;border-color:#c92a2a}
+.post-card{display:flex;flex-direction:column;gap:10px;min-width:0}
+.empty{padding:40px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:8px}
+.board .content .body{white-space:pre-line}
+.board .imgs{display:flex;flex-wrap:wrap;gap:10px}
+.board .imgs button{padding:0;border:0;background:none;cursor:zoom-in}
+.board .imgs img{max-width:300px;width:100%}
+.post .meta.desc{white-space:pre-line}
+.don-years{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.don-text{max-width:46em;white-space:pre-line;margin-bottom:28px}
+.status-pill{font-size:.8125rem;color:var(--muted)}
+
+/* 편집 창 */
+dialog.ed{border:0;border-radius:12px;padding:0;width:min(640px,94vw);max-height:90vh;background:var(--surface);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.ed::backdrop{background:rgba(6,10,20,.6)}
+.ed form{display:flex;flex-direction:column;gap:16px;padding:24px}
+.ed h3{font-size:1.25rem}
+.ed label{display:flex;flex-direction:column;gap:6px;font-weight:700;color:var(--ink);font-size:.9375rem}
+.ed label small{font-weight:400;color:var(--muted)}
+.ed input[type=text],.ed input[type=date],.ed input[type=month],.ed input[type=number],.ed select,.ed textarea{font:400 1rem var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);width:100%;box-sizing:border-box}
+.ed textarea{min-height:120px;resize:vertical;line-height:1.6}
+.ed .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:500px){.ed .two{grid-template-columns:1fr}}
+.thumbs{display:flex;flex-wrap:wrap;gap:10px}
+.thumb{position:relative;width:96px}
+.thumb img{width:96px;height:72px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.thumb .x{position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;border:0;background:#c92a2a;color:#fff;font-weight:900;cursor:pointer;line-height:24px;padding:0}
+.thumb .new{position:absolute;left:4px;top:4px;background:var(--accent);color:#fff;font-size:.6875rem;padding:0 6px;border-radius:4px}
+.ed .actions{display:flex;justify-content:flex-end;gap:8px;align-items:center;flex-wrap:wrap}
+.ed .actions .msg{margin-right:auto;font-size:.875rem;color:var(--muted)}
+.ed .actions .msg.err{color:#c92a2a}
+.ed .cancel{background:none;border:1px solid var(--line);color:var(--text);border-radius:999px;padding:9px 18px;font:700 .9375rem var(--body);cursor:pointer}
+.ed .add-btn:disabled{opacity:.5;cursor:wait}
+.mtbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.mtbl table{font-size:.9375rem}
+.mtbl td,.mtbl th{padding:6px 8px}
+.mtbl input{width:120px;text-align:right;padding:6px 8px!important}
+.note-up{font-size:.8125rem;color:var(--muted)}
+
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#greeting">본문 바로가기</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <img src="img/logo.png" alt="">
+      <span><b>인천장애인연합회</b><small>Incheon Disability Federation</small></span>
+    </a>
+    <nav class="main" id="nav" aria-label="주 메뉴">
+      <ul>
+        <li><a href="#greeting">인사말</a></li>
+        <li><a href="#about">단체소개</a></li>
+        <li><a href="#history">연혁</a></li>
+        <li><a href="#news">활동소식</a></li>
+        <li><a href="#notice">공지사항</a></li>
+        <li><a href="#donation">기부금 공개</a></li>
+        <li><a href="#location">오시는 길</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <div class="fs" role="group" aria-label="글자 크기">
+        <button type="button" id="fs-m" data-fs="" aria-pressed="true" title="기본 글자">가</button>
+        <button type="button" id="fs-l" data-fs="fs-l" aria-pressed="false" title="큰 글자">가</button>
+        <button type="button" id="fs-xl" data-fs="fs-xl" aria-pressed="false" title="아주 큰 글자">가</button>
+      </div>
+      <button type="button" class="admin-btn" id="admin-btn" aria-pressed="false" hidden>관리</button>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">메뉴</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">인천광역시 부평구 · 2023년 창립</div>
+      <h1>차별 없는 <em>동행</em>,<br><em>나눔</em>으로 하나되다</h1>
+      <p class="lead">인천장애인연합회는 장애인과 비장애인이 서로 이해하고 함께 어우러지는 지역사회를 만들어 갑니다. 매달 이웃과 따뜻한 한 그릇을 나눕니다.</p>
+      <div class="cta">
+        <a class="btn primary" href="#news">활동소식 보기</a>
+        <a class="btn ghost" href="#location">오시는 길</a>
+      </div>
+    </div>
+    <figure>
+      <img src="img/2024-07-1.jpg" alt="'사랑의 한그릇' 현수막을 든 연합회 회원과 봉사자들이 숲속 공원에서 함께 찍은 단체 사진">
+      <figcaption>2024년 7월 사랑의 한그릇 행사</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="greeting">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">GREETING</span><h2>인사말</h2></div>
+    <div class="greet">
+      <img src="img/greeting.jpg" alt="여러 사람이 서로의 손을 맞잡고 있는 모습">
+      <div class="body">
+        <p class="hello">안녕하십니까.</p>
+        <p class="first">먼저, 우리 단체의 활동에 관심을 가져주시고 이 자리를 함께해주신 모든 분들께 진심으로 감사의 인사를 드립니다.</p>
+        <p>우리 인천장애인연합회는 장애인의 권익 신장과 사회 통합을 위한 다양한 활동을 펼치며, 모두가 더불어 살아가는 세상을 만들기 위해 끊임없이 노력하고 있습니다. 특히 우리 사회의 소외된 이웃들에게 실질적인 도움이 될 수 있도록, 목소리를 내고 행동하는 것이야말로 우리 단체의 존재 이유라 생각합니다.</p>
+        <p>오늘 이 자리는 장애인과 비장애인이 함께 어우러지는 뜻깊은 자리입니다. 작은 만남이지만, 이 만남이 큰 변화의 시작이 되기를 기대합니다. 아울러 앞으로도 우리 단체는 누구도 차별받지 않고, 누구나 존중받는 사회를 만들기 위해 여러분과 함께 걸어가겠습니다.</p>
+        <p>여러분의 따뜻한 관심과 지속적인 응원을 부탁드리며, 항상 건강과 행복이 함께 하시길 기원합니다.</p>
+        <p class="sign">회장 <b>이상원</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">ABOUT</span><h2>단체소개</h2></div>
+    <div class="slogan">
+      <p>차별 없는 <span>동행</span>, <span>나눔</span>으로 하나되다</p>
+      <img src="img/together.jpg" alt="네 사람이 테이블에 둘러앉아 노트북과 서류를 보며 이야기 나누는 일러스트">
+    </div>
+    <div class="about-text">
+      <p>인천장애인연합회는 장애인과 비장애인이 서로 이해하고 함께 어우러지는 사회를 만들기 위해 설립된 단체로, 장애인의 권익 보호와 사회 통합을 핵심 가치로 삼고 활동하고 있습니다.</p>
+      <p>우리 연합회는 장애인들이 정상적인 사회의 한 구성원으로 존중받으며, 누구나 차별 없이 살아갈 수 있는 건강한 지역사회를 만들기 위해 다음과 같은 다양한 활동을 펼치고 있습니다.</p>
+    </div>
+    <h3 style="margin-bottom:20px">주요 활동</h3>
+    <ul class="acts">
+      <li><img src="img/act1.jpg" alt="휠체어에 앉은 사람의 손을 잡아주는 모습"><h3>장애인과 비장애인의 화합을 위한 봉사활동 및 문화행사</h3></li>
+      <li><img src="img/act2.jpg" alt="식판에 음식을 담아 배식하는 모습"><h3>소외계층(장애인·노인 등)을 위한 ‘사랑의 한 그릇’ 나눔 식사 행사</h3></li>
+      <li><img src="img/act3.jpg" alt="여러 사람이 색색의 퍼즐 조각을 맞추는 모습"><h3>장애인의 자립과 복지 증진을 위한 캠페인, 정책 제안 및 권익 옹호 활동</h3></li>
+      <li><img src="img/act4.jpg" alt="사람 아이콘 블록들이 선으로 연결된 네트워크"><h3>회원 단체 및 지역사회와의 협력 네트워크 강화</h3></li>
+    </ul>
+    <p class="closing">인천장애인연합회는 앞으로도 나눔과 실천을 통해 차별 없는 사회, 모두가 존중받는 공동체를 만들어가기 위해 끊임없이 노력할 것입니다.</p>
+  </div>
+</section>
+
+<section class="sec" id="history">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">HISTORY</span><h2>연혁</h2></div>
+    <ol class="hist" reversed>
+      <li><div class="yr">2025</div><ul>
+        <li><span class="mo">12월</span><span>2025년도 정기총회 개최</span></li>
+        <li><span class="mo">09월</span><span>인천장애인연합회 홈페이지 개설</span></li>
+        <li><span class="mo">06월</span><span>보훈의 달 맞이 부평2동 사회보장협의체와 함께 사랑의 한그릇 행사</span></li>
+      </ul></li>
+      <li><div class="yr">2024</div><ul>
+        <li><span class="mo">12월</span><span>2024년 정기총회</span></li>
+        <li><span class="mo">04월</span><span>사랑의 한그릇 운영 시작</span></li>
+      </ul></li>
+      <li><div class="yr">2023</div><ul>
+        <li><span class="mo">08월</span><span><span class="partner">연세손치과</span>와 MOU 체결을 시작으로 장애인센터 등과 업무 제휴</span></li>
+        <li><span class="mo">05월</span><span>고유번호증 발급</span></li>
+        <li><span class="mo">04월</span><span>인천장애인연합회 창립 총회 및 임원 선출</span></li>
+        <li><span class="mo">03월</span><span>2020년부터 이어온 나눔 모임을 인천장애인연합회로 발족</span></li>
+        <li><span class="mo">02월</span><span>지역 나눔·환경정화 활동 지속</span></li>
+      </ul></li>
+      <li><div class="yr">2020</div><ul>
+        <li><span class="mo">01월</span><span>삼산1동 지역 요식업체들과 함께 월 1회 취약계층에게 반찬나눔<br>지역주민들과 함께 동네 환경정화활동</span></li>
+      </ul></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="news">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">NEWS</span><h2>활동소식</h2></div>
+    <div class="admin-bar admin-only"><button type="button" class="add-btn" id="add-post">+ 활동소식 올리기</button><p>사진은 여러 장을 한 번에 고를 수 있어요. 큰 사진은 자동으로 줄여서 올립니다.</p><button type="button" class="mini" id="pw-change">비밀번호 바꾸기</button></div>
+    <div class="filters" id="filters" role="group" aria-label="연도별 보기"></div>
+    <div class="posts" id="posts"></div>
+  </div>
+</section>
+
+<section class="sec" id="notice">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">NOTICE</span><h2>공지사항</h2></div>
+    <div class="admin-bar admin-only"><button type="button" class="add-btn" id="add-notice">+ 공지 쓰기</button><p>안내문·포스터 사진을 함께 붙일 수 있어요.</p></div>
+    <ul class="board" id="board"></ul>
+  </div>
+</section>
+
+<section class="sec" id="donation">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">TRANSPARENCY</span><h2>기부금 모금액 및 활용실적</h2></div>
+    <div class="admin-bar admin-only"><button type="button" class="add-btn" id="add-don">+ 새 연도 추가</button><button type="button" class="mini" id="edit-don">보고 있는 연도 수정</button><p>월별 수입·지출만 넣으면 합계와 잔액은 자동으로 계산돼요.</p></div>
+    <div class="don-years" id="don-years" role="group" aria-label="연도 선택"></div>
+    <div id="don-body"></div>
+  </div>
+</section>
+
+
+<section class="sec" id="location">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">LOCATION</span><h2>오시는 길</h2></div>
+    <div class="loc">
+      <div class="map"><img src="img/map.jpg" alt="인천광역시 부평구 마장로 428 위치 지도. 청중로와 안남로375번길 사이, 부평 자유장터 북쪽"></div>
+      <div>
+        <dl class="info">
+          <div><dt>주소</dt><dd><span id="addr">인천광역시 부평구 마장로 428, 2층 202호 (청천동)</span><button type="button" class="copy" data-copy="addr">복사</button></dd></div>
+          <div><dt>전화</dt><dd><span id="tel">050-7369-0119</span><button type="button" class="copy" data-copy="tel">복사</button></dd></div>
+          <div><dt>팩스</dt><dd><span>050-4366-0119</span></dd></div>
+          <div><dt>이메일</dt><dd><span id="mail">idf0420@naver.com</span><button type="button" class="copy" data-copy="mail">복사</button></dd></div>
+        </dl>
+        <div class="maplinks">
+          <a href="https://map.naver.com/p/search/%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EB%A7%88%EC%9E%A5%EB%A1%9C%20428" target="_blank" rel="noopener">네이버 지도</a>
+          <a href="https://map.kakao.com/?q=%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EB%A7%88%EC%9E%A5%EB%A1%9C%20428" target="_blank" rel="noopener">카카오맵</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EB%A7%88%EC%9E%A5%EB%A1%9C%20428" target="_blank" rel="noopener">구글 지도</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><img src="img/logo.png" alt=""><span><b>인천장애인연합회</b><small>Incheon Disability Federation</small></span></span>
+    <address>인천광역시 부평구 마장로 428, 2층 202호 (청천동)<br>전화 050-7369-0119 · 팩스 050-4366-0119 · idf0420@naver.com</address>
+  </div>
+</footer>
+
+<dialog class="ed" id="dlg-pw" aria-labelledby="pw-h" style="width:min(420px,94vw)">
+  <form id="f-pw" novalidate>
+    <h3 id="pw-h">관리자 비밀번호</h3>
+    <p id="pw-info" style="font-size:.9375rem;color:var(--muted)"></p>
+    <label id="pw-old-l">현재 비밀번호<input type="password" id="pw-old" autocomplete="current-password"></label>
+    <label id="pw-new-l">새 비밀번호 <small>4자 이상</small><input type="password" id="pw-new" autocomplete="new-password"></label>
+    <label id="pw-new2-l">새 비밀번호 확인<input type="password" id="pw-new2" autocomplete="new-password"></label>
+    <div class="actions"><span class="msg" id="pw-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="pw-ok">확인</button></div>
+  </form>
+</dialog>
+
+<dialog class="ed" id="dlg-post" aria-labelledby="dp-h">
+  <form id="f-post" novalidate>
+    <h3 id="dp-h">활동소식 올리기</h3>
+    <label>제목<input type="text" id="p-title" required placeholder="예: 2025년 9월 사랑의 한그릇 행사"></label>
+    <div class="two">
+      <label>날짜<input type="month" id="p-date" required></label>
+      <label>분류<select id="p-kind"><option>나눔</option><option>총회</option><option>행사</option><option>기타</option></select></label>
+    </div>
+    <label>설명 <small>(선택)</small><textarea id="p-desc" placeholder="행사 내용, 함께한 단체 등을 적어주세요"></textarea></label>
+    <label>사진 <small>첫 번째 사진이 대표 사진이 됩니다</small><input type="file" id="p-files" accept="image/*" multiple></label>
+    <div class="thumbs" id="p-thumbs"></div>
+    <div class="actions"><span class="msg" id="p-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="p-save">저장</button></div>
+  </form>
+</dialog>
+
+<dialog class="ed" id="dlg-notice" aria-labelledby="dn-h">
+  <form id="f-notice" novalidate>
+    <h3 id="dn-h">공지 쓰기</h3>
+    <label>제목<input type="text" id="n-title" required></label>
+    <div class="two">
+      <label>날짜<input type="date" id="n-date" required></label>
+      <label>분류<select id="n-kind"><option>안내</option><option>행사</option><option>공개</option><option>모집</option></select></label>
+    </div>
+    <label>내용<textarea id="n-body" placeholder="줄바꿈은 그대로 보입니다"></textarea></label>
+    <label>첨부 사진 <small>(선택) 포스터·안내문 등</small><input type="file" id="n-files" accept="image/*" multiple></label>
+    <div class="thumbs" id="n-thumbs"></div>
+    <div class="actions"><span class="msg" id="n-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="n-save">저장</button></div>
+  </form>
+</dialog>
+
+<dialog class="ed" id="dlg-don" aria-labelledby="dd-h">
+  <form id="f-don" novalidate>
+    <h3 id="dd-h">기부금 내역</h3>
+    <div class="two">
+      <label>연도<input type="number" id="d-year" min="2000" max="2100" required></label>
+      <label>지출 목적<input type="text" id="d-purpose" placeholder="예: 사랑의 한그릇 행사"></label>
+    </div>
+    <label>안내 글 <small>(선택) 모금 취지, 감사 인사, 사용처 설명 등</small><textarea id="d-text"></textarea></label>
+    <div>
+      <strong style="color:var(--ink);font-size:.9375rem">월별 수입·지출 (원)</strong>
+      <div class="mtbl" style="margin-top:6px"><table><thead><tr><th>월</th><th>수입</th><th>지출</th></tr></thead><tbody id="d-rows"></tbody></table></div>
+    </div>
+    <label>명세서 원본 사진 <small>(선택)</small><input type="file" id="d-file" accept="image/*,application/pdf"></label>
+    <div class="thumbs" id="d-thumbs"></div>
+    <div class="actions"><button type="button" class="mini danger" id="d-del" hidden>이 연도 삭제</button><span class="msg" id="d-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="d-save">저장</button></div>
+  </form>
+</dialog>
+
+
+<dialog class="lb" id="lb" aria-label="사진 크게 보기">
+  <div class="lb-inner">
+    <div class="lb-img"><img id="lb-img" src="" alt=""></div>
+    <div class="lb-bar">
+      <span class="t" id="lb-t"></span>
+      <span class="n" id="lb-n"></span>
+      <button type="button" id="lb-prev" aria-label="이전 사진">이전</button>
+      <button type="button" id="lb-next" aria-label="다음 사진">다음</button>
+      <button type="button" id="lb-close">닫기</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ===== 기본 내용 (저장소에 연결되지 않은 화면에서 보여줄 내용) ===== */
+const FALLBACK={
+  posts:[
+    {id:'2025-08',title:'2025년 8월 사랑의 한그릇 행사',date:'2025-08',kind:'나눔',photos:[{src:'img/2025-08-1.jpg',alt:'건물 앞 봉사자와 어르신 단체 사진'}]},
+    {id:'2025-07',title:'2025년 7월 사랑의 한그릇 행사',date:'2025-07',kind:'나눔',photos:[{src:'img/2025-07-1.jpg',alt:'나무 그늘 아래 봉사자 단체 사진'},{src:'img/2025-07-2.jpg',alt:'차양막 아래에서 식사하는 어르신들'}]},
+    {id:'2025-06',title:'2025년 6월 사랑의 한그릇 행사',date:'2025-06',kind:'나눔',desc:'보훈의 달을 맞이하여 부평2동 사회보장협의체와 함께한 사랑의 한그릇 행사',photos:[{src:'img/2025-06-1.jpg',alt:'호국보훈의 달 기념 행사 현수막 앞 단체 사진'},{src:'img/2025-06-2.jpg',alt:'실내에서 식사하는 어르신과 휠체어 이용자'}]},
+    {id:'2024-12',title:'2024년 12월 정기총회',date:'2024-12',kind:'총회',photos:[{src:'img/2024-12-1.jpg',alt:'식당에서 열린 정기총회'}]},
+    {id:'2024-11',title:'2024년 11월 사랑의 한그릇 행사',date:'2024-11',kind:'나눔',photos:[{src:'img/2024-11-1.jpg',alt:'천막 아래 식사 자리'},{src:'img/2024-11-2.jpg',alt:'음식을 준비하는 봉사자들'}]},
+    {id:'2024-07',title:'2024년 7월 사랑의 한그릇 행사',date:'2024-07',kind:'나눔',photos:[{src:'img/2024-07-1.jpg',alt:'사랑의 한그릇 현수막 단체 사진'},{src:'img/2024-07-2.jpg',alt:'공원에서 식사하는 어르신들'}]},
+    {id:'2024-05',title:'2024년 5월 사랑의 한그릇 행사',date:'2024-05',kind:'나눔',photos:[{src:'img/2024-05-1.jpg',alt:'푸드트럭 앞 봉사자 단체 사진'},{src:'img/2024-05-2.jpg',alt:'손하트를 하는 봉사자들'},{src:'img/2024-05-3.jpg',alt:'광장에서 식사하는 어르신들'},{src:'img/2024-05-4.jpg',alt:'푸드트럭 옆에서 식사하는 참여자들'}]}
+  ],
+  notices:[
+    {id:'n-2026-04-30',kind:'공개',title:'2025년 연간기부금 모금액 및 활용실적 공개',date:'2026-04-30',body:'2025년 한 해 동안 모금한 기부금과 그 활용 내역을 공개합니다.\n자세한 내용은 아래 기부금 공개에서 확인하실 수 있습니다.',images:[]},
+    {id:'n-2025-11-28',kind:'행사',title:'인천장애인연합회 2025년도 정기총회 개최',date:'2025-11-28',body:'2025년도 인천장애인연합회 정기총회를 개최합니다.\n\n일시: 2025년 12월 16일 (화) 오후 7시\n장소: 갈산갈비\n회비: 회원 3만원, 비회원 4만원',images:[{src:'img/notice-2025-gm.jpg',alt:'2025 정기총회 안내 포스터'}]},
+    {id:'n-2025-09-24',kind:'안내',title:'인천장애인연합회 홈페이지가 새롭게 오픈했습니다.',date:'2025-09-24',body:'인천장애인연합회 홈페이지가 새롭게 오픈했습니다.\n많은 성원과 관심 부탁드립니다. 감사합니다.',images:[]}
+  ],
+  donations:[
+    {id:'2025',year:2025,purpose:'사랑의 한그릇 행사',text:'',doc:{src:'img/donation-2025.jpg',alt:'2025년 연간 기부금 모금액 및 활용실적 명세서 원본'},
+     rows:[{m:3,inc:1450000,exp:1450000},{m:4,inc:200000,exp:0},{m:5,inc:0,exp:200000},{m:6,inc:500000,exp:500000},{m:7,inc:1650000,exp:1650000},{m:10,inc:1450000,exp:1450000},{m:11,inc:500000,exp:500000},{m:12,inc:1450000,exp:1450000}]}
+  ]
+};
+
+const $=s=>document.querySelector(s);
+function h(tag,attrs,...kids){const e=document.createElement(tag);
+  for(const k in attrs||{}){const v=attrs[k];if(v==null||v===false)continue;
+    if(k==='class')e.className=v;else if(k==='text')e.textContent=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else e.setAttribute(k,v===true?'':v)}
+  for(const c of kids.flat()){if(c==null||c===false)continue;e.append(c.nodeType?c:document.createTextNode(c))}return e}
+const src=p=>p.asset?'/_blob/'+p.asset:p.src;
+const won=n=>(Number(n)||0).toLocaleString('ko-KR');
+const fmtMonth=d=>{const[y,m]=(d||'').split('-');return y?`${y}.${m||''}`:''};
+const fmtDate=d=>(d||'').replaceAll('-','.');
+function toast(t){const d=h('div',{class:'toast',role:'status',text:t});document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+
+/* ===== 상태 ===== */
+const S={posts:FALLBACK.posts,notices:FALLBACK.notices,donations:FALLBACK.donations,live:false,canEdit:false,db:null,assets:null,year:'all',donYear:null};
+
+/* ===== 활동소식 ===== */
+function renderPosts(){
+  const years=[...new Set(S.posts.map(p=>(p.date||'').slice(0,4)).filter(Boolean))].sort().reverse();
+  if(S.year!=='all'&&!years.includes(S.year))S.year='all';
+  const fl=$('#filters');fl.replaceChildren(
+    ...['all',...years].map(y=>h('button',{type:'button','aria-pressed':String(S.year===y),text:y==='all'?'전체':y+'년',onclick:()=>{S.year=y;renderPosts()}})));
+  const list=S.posts.filter(p=>S.year==='all'||(p.date||'').startsWith(S.year)).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.createdAt||0)-(a.createdAt||0));
+  const box=$('#posts');
+  if(!list.length){box.replaceChildren(h('div',{class:'empty',style:'grid-column:1/-1',text:S.canEdit?'아직 올린 활동소식이 없어요. 위의 ‘+ 활동소식 올리기’로 첫 소식을 올려보세요.':'아직 올라온 활동소식이 없습니다.'}));return}
+  box.replaceChildren(...list.map(p=>{
+    const ph=p.photos||[];
+    const open=()=>ph.length&&openLB(p.title,ph.map(x=>({src:src(x),alt:x.alt||p.title})),0);
+    return h('article',{class:'post-card'},
+      h('button',{type:'button',class:'post',onclick:open,'aria-label':p.title+' 사진 보기'},
+        h('div',{class:'ph'},ph.length?h('img',{loading:'lazy',src:src(ph[0]),alt:ph[0].alt||p.title}):h('div',{style:'aspect-ratio:4/3;background:var(--line)'}),
+          ph.length>1?h('span',{class:'count',text:`사진 ${ph.length}장`}):null),
+        h('span',{class:'tag',text:p.kind||'소식'}),h('h3',{text:p.title}),
+        p.desc?h('p',{class:'meta desc',text:p.desc}):null,
+        h('span',{class:'meta',text:fmtMonth(p.date)})),
+      S.canEdit?h('div',{class:'row-tools admin-only'},
+        h('button',{type:'button',text:'수정',onclick:()=>editPost(p)}),
+        delBtn(()=>removeDoc('posts',p.id,ph))):null)
+  }));
+}
+
+/* ===== 공지사항 ===== */
+function renderNotices(){
+  const list=[...S.notices].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.createdAt||0)-(a.createdAt||0));
+  const ul=$('#board');
+  if(!list.length){ul.replaceChildren(h('li',{class:'empty',text:'등록된 공지가 없습니다.'}));return}
+  ul.replaceChildren(...list.map(n=>{
+    const imgs=n.images||[];
+    return h('li',{},h('details',{},
+      h('summary',{},h('span',{class:'kind',text:n.kind||'안내'}),h('span',{class:'ttl',text:n.title}),h('span',{class:'date',text:fmtDate(n.date)})),
+      h('div',{class:'content'},
+        n.body?h('p',{class:'body',text:n.body}):null,
+        imgs.length?h('div',{class:'imgs'},imgs.map((x,i)=>h('button',{type:'button','aria-label':'첨부 사진 크게 보기',onclick:()=>openLB(n.title,imgs.map(y=>({src:src(y),alt:y.alt||n.title})),i)},h('img',{src:src(x),alt:x.alt||n.title,loading:'lazy'})))):null,
+        S.canEdit?h('div',{class:'row-tools admin-only'},h('button',{type:'button',text:'수정',onclick:()=>editNotice(n)}),delBtn(()=>removeDoc('notices',n.id,imgs))):null)));
+  }));
+}
+
+/* ===== 기부금 ===== */
+function renderDon(){
+  const list=[...S.donations].sort((a,b)=>b.year-a.year);
+  const yrs=$('#don-years'),body=$('#don-body');
+  if(!list.length){yrs.replaceChildren();body.replaceChildren(h('div',{class:'empty',text:'공개된 기부금 내역이 없습니다.'}));$('#edit-don').hidden=true;return}
+  $('#edit-don').hidden=false;
+  if(!list.find(d=>String(d.year)===String(S.donYear)))S.donYear=list[0].year;
+  yrs.replaceChildren(...(list.length>1?list.map(d=>h('button',{type:'button',class:'',style:'',text:d.year+'년','aria-pressed':String(d.year==S.donYear),onclick:()=>{S.donYear=d.year;renderDon()}})):[]));
+  yrs.className='don-years filters';
+  const d=list.find(x=>x.year==S.donYear);
+  const rows=[...(d.rows||[])].filter(r=>(+r.inc||0)||(+r.exp||0)).sort((a,b)=>a.m-b.m);
+  let bal=0;const trs=rows.map(r=>{bal+=(+r.inc||0)-(+r.exp||0);return h('tr',{},h('td',{text:r.m+'월'}),h('td',{text:won(r.inc)}),h('td',{text:won(r.exp)}),h('td',{text:won(bal)}))});
+  const ti=rows.reduce((s,r)=>s+(+r.inc||0),0),te=rows.reduce((s,r)=>s+(+r.exp||0),0);
+  const empty=[...Array(12)].map((_,i)=>i+1).filter(m=>!rows.find(r=>r.m===m));
+  body.replaceChildren(
+    h('h3',{style:'font-size:1.375rem;margin-bottom:16px',text:`${d.year}년 기부금 모금액 및 활용실적`}),
+    d.text?h('p',{class:'don-text',text:d.text}):null,
+    h('div',{class:'don'},
+      h('div',{style:'min-width:0'},
+        h('div',{class:'don-sum'},
+          h('div',{},h('span',{text:'연간 모금액'}),h('b',{text:won(ti)+'원'})),
+          h('div',{},h('span',{text:'연간 지출액'}),h('b',{text:won(te)+'원'})),
+          d.purpose?h('div',{},h('span',{text:'지출 목적'}),h('b',{style:'font-size:1.25rem;line-height:2.4',text:d.purpose})):null),
+        h('div',{class:'tbl'},h('table',{},
+          h('thead',{},h('tr',{},['월','수입','지출','잔액'].map(t=>h('th',{scope:'col',text:t})))),
+          h('tbody',{},trs.length?trs:h('tr',{},h('td',{colspan:'4',style:'text-align:center',text:'입력된 월별 내역이 없습니다'}))),
+          h('tfoot',{},h('tr',{},h('td',{text:'합계'}),h('td',{text:won(ti)}),h('td',{text:won(te)}),h('td',{text:won(ti-te)}))))),
+        h('p',{class:'note',text:`단위: 원${empty.length&&empty.length<12?' · '+empty.join('·')+'월은 수입·지출 없음':''}`})),
+      d.doc?h('div',{class:'doc'},
+        /pdf/.test(d.doc.type||'')?h('a',{href:src(d.doc),target:'_blank',rel:'noopener',class:'btn primary',text:'명세서 원본(PDF) 보기'}):
+        h('button',{type:'button','aria-label':'명세서 원본 크게 보기',onclick:()=>openLB(`${d.year}년 기부금 명세서`,[{src:src(d.doc),alt:d.doc.alt||'명세서 원본'}],0)},h('img',{src:src(d.doc),alt:d.doc.alt||'명세서 원본'})),
+        h('span',{text:'명세서 원본 (눌러서 크게 보기)'})):null));
+}
+
+function renderAll(){renderPosts();renderNotices();renderDon()}
+renderAll();
+
+/* ===== 사진 크게 보기 ===== */
+const lb=$('#lb');let cur={list:[],i:0};
+function show(){const it=cur.list[cur.i];$('#lb-img').src=it.src;$('#lb-img').alt=it.alt||'';$('#lb-n').textContent=cur.list.length>1?`${cur.i+1} / ${cur.list.length}`:'';
+  $('#lb-prev').hidden=$('#lb-next').hidden=cur.list.length<2;}
+function openLB(title,list,i){cur={list,i};$('#lb-t').textContent=title;show();lb.showModal();}
+$('#lb-prev').onclick=()=>{cur.i=(cur.i-1+cur.list.length)%cur.list.length;show()};
+$('#lb-next').onclick=()=>{cur.i=(cur.i+1)%cur.list.length;show()};
+$('#lb-close').onclick=()=>lb.close();
+lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+lb.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')$('#lb-prev').click();if(e.key==='ArrowRight')$('#lb-next').click();});
+
+/* ===== 글자 크기 · 메뉴 · 복사 ===== */
+const fsBtns=document.querySelectorAll('.fs button');
+function setFs(c){document.documentElement.classList.remove('fs-l','fs-xl');if(c)document.documentElement.classList.add(c);
+  fsBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.fs===c));try{localStorage.setItem('idf-fs',c)}catch(e){}}
+fsBtns.forEach(b=>b.addEventListener('click',()=>setFs(b.dataset.fs)));
+try{const s=localStorage.getItem('idf-fs');if(s)setFs(s)}catch(e){}
+const nav=$('#nav'),mb=$('#menu-btn');
+mb.onclick=()=>{const o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'닫기':'메뉴'};
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');mb.setAttribute('aria-expanded',false);mb.textContent='메뉴'}));
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.copy),t=el.textContent;
+  const fb=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('선택했어요. 복사해서 쓰세요')};
+  try{navigator.clipboard.writeText(t).then(()=>toast('복사했어요'),fb)}catch(e){fb()}
+}));
+
+/* ===== 관리 기능 ===== */
+function delBtn(fn){let t;const b=h('button',{type:'button',class:'danger',text:'삭제'});
+  b.onclick=async()=>{if(!b.classList.contains('armed')){b.classList.add('armed');b.textContent='한 번 더 누르면 삭제';t=setTimeout(()=>{b.classList.remove('armed');b.textContent='삭제'},4000);return}
+    clearTimeout(t);b.disabled=true;b.textContent='삭제 중…';try{await fn();toast('삭제했어요')}catch(e){b.disabled=false;b.textContent='삭제';toast('삭제하지 못했어요. 잠시 후 다시 해주세요')}};return b}
+async function removeDoc(col,id,files){
+  await S.db.collection(col).doc(id).delete();
+  for(const f of files||[])if(f.asset&&S.assets){try{await S.assets.delete(f.asset)}catch(e){}}
+}
+async function shrink(file){
+  if(!/^image\/(jpeg|png|webp)$/.test(file.type))return file;
+  try{const bmp=await createImageBitmap(file,{imageOrientation:'from-image'});const max=1600,sc=Math.min(1,max/Math.max(bmp.width,bmp.height));
+    if(sc===1&&file.size<1.5e6)return file;
+    const c=document.createElement('canvas');c.width=Math.round(bmp.width*sc);c.height=Math.round(bmp.height*sc);c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+    return await new Promise(r=>c.toBlob(b=>r(b||file),'image/jpeg',.85));}catch(e){return file}
+}
+async function uploadAll(items,msgEl){
+  const out=[];let n=0;const total=items.filter(i=>i.file).length;
+  for(const it of items){
+    if(!it.file){out.push(it.ref);continue}
+    n++;msgEl.textContent=`사진 올리는 중… ${n}/${total}`;
+    const blob=await shrink(it.file);
+    const r=await S.assets.upload(blob,{type:blob.type||it.file.type});
+    out.push({asset:r.id,alt:it.alt||'',type:r.contentType});
+  }
+  return out;
+}
+function errText(e){const c=e&&e.code;return c==='too_large'?'사진 용량이 너무 커요.':c==='unsupported_type'?'올릴 수 없는 파일 형식이에요.':c==='quota_or_state'||c==='quota_exceeded'?'저장 공간이 가득 찼어요. 오래된 사진을 지워주세요.':c==='invalid_argument'?'저장 권한이 없어요.':'저장하지 못했어요. 잠시 후 다시 해주세요.'}
+
+/* 사진 목록 편집기 */
+function photoEditor(input,box,single){
+  let items=[];
+  const draw=()=>{box.replaceChildren(...items.map((it,i)=>h('div',{class:'thumb'},
+    h('img',{src:it.preview,alt:''}),it.file?h('span',{class:'new',text:'새 사진'}):null,
+    h('button',{type:'button',class:'x','aria-label':'이 사진 빼기',text:'×',onclick:()=>{if(it.file)URL.revokeObjectURL(it.preview);items.splice(i,1);draw()}}))))};
+  input.onchange=()=>{const fs=[...input.files];if(single)items=[];
+    for(const f of single?fs.slice(0,1):fs)items.push({file:f,preview:/pdf/.test(f.type)?'':URL.createObjectURL(f),alt:''});input.value='';draw()};
+  return{set(list){items=(list||[]).map(r=>({ref:r,preview:/pdf/.test(r.type||'')?'':src(r)}));draw()},get:()=>items};
+}
+const pEd=photoEditor($('#p-files'),$('#p-thumbs')),nEd=photoEditor($('#n-files'),$('#n-thumbs')),dEd=photoEditor($('#d-file'),$('#d-thumbs'),true);
+document.querySelectorAll('dialog.ed [data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
+
+const today=()=>new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
+let editing=null;
+function removedAssets(before,after){const keep=new Set(after.filter(x=>x.asset).map(x=>x.asset));return(before||[]).filter(x=>x.asset&&!keep.has(x.asset))}
+
+/* 활동소식 */
+function editPost(p){editing=p||null;$('#dp-h').textContent=p?'활동소식 수정':'활동소식 올리기';
+  $('#p-title').value=p?.title||'';$('#p-date').value=p?.date||today().slice(0,7);$('#p-kind').value=p?.kind||'나눔';$('#p-desc').value=p?.desc||'';
+  pEd.set(p?.photos);$('#p-msg').textContent='';$('#p-msg').className='msg';$('#p-save').disabled=false;$('#dlg-post').showModal()}
+$('#add-post').onclick=()=>editPost(null);
+$('#f-post').onsubmit=async e=>{e.preventDefault();const msg=$('#p-msg');
+  const title=$('#p-title').value.trim(),date=$('#p-date').value;
+  if(!title||!date){msg.textContent='제목과 날짜를 넣어주세요.';msg.className='msg err';return}
+  const items=pEd.get();if(items.some(i=>i.file)&&!S.assets){msg.textContent='사진을 올릴 권한이 없어요.';msg.className='msg err';return}
+  $('#p-save').disabled=true;msg.className='msg';
+  try{const photos=await uploadAll(items.map(i=>({...i,alt:title})),msg);msg.textContent='저장 중…';
+    const ref=editing?S.db.collection('posts').doc(editing.id):S.db.collection('posts').doc();
+    await ref.set({title,date,kind:$('#p-kind').value,desc:$('#p-desc').value.trim(),photos,createdAt:editing?.createdAt||Date.now(),updatedAt:Date.now()});
+    if(editing)for(const f of removedAssets(editing.photos,photos)){try{await S.assets.delete(f.asset)}catch(e){}}
+    $('#dlg-post').close();toast(editing?'수정했어요':'활동소식을 올렸어요');
+  }catch(err){msg.textContent=errText(err);msg.className='msg err';$('#p-save').disabled=false}};
+
+/* 공지 */
+function editNotice(n){editing=n||null;$('#dn-h').textContent=n?'공지 수정':'공지 쓰기';
+  $('#n-title').value=n?.title||'';$('#n-date').value=n?.date||today();$('#n-kind').value=n?.kind||'안내';$('#n-body').value=n?.body||'';
+  nEd.set(n?.images);$('#n-msg').textContent='';$('#n-msg').className='msg';$('#n-save').disabled=false;$('#dlg-notice').showModal()}
+$('#add-notice').onclick=()=>editNotice(null);
+$('#f-notice').onsubmit=async e=>{e.preventDefault();const msg=$('#n-msg');
+  const title=$('#n-title').value.trim(),date=$('#n-date').value;
+  if(!title||!date){msg.textContent='제목과 날짜를 넣어주세요.';msg.className='msg err';return}
+  const items=nEd.get();if(items.some(i=>i.file)&&!S.assets){msg.textContent='사진을 올릴 권한이 없어요.';msg.className='msg err';return}
+  $('#n-save').disabled=true;msg.className='msg';
+  try{const images=await uploadAll(items.map(i=>({...i,alt:title})),msg);msg.textContent='저장 중…';
+    const ref=editing?S.db.collection('notices').doc(editing.id):S.db.collection('notices').doc();
+    await ref.set({title,date,kind:$('#n-kind').value,body:$('#n-body').value.trim(),images,createdAt:editing?.createdAt||Date.now(),updatedAt:Date.now()});
+    if(editing)for(const f of removedAssets(editing.images,images)){try{await S.assets.delete(f.asset)}catch(e){}}
+    $('#dlg-notice').close();toast(editing?'수정했어요':'공지를 올렸어요');
+  }catch(err){msg.textContent=errText(err);msg.className='msg err';$('#n-save').disabled=false}};
+
+/* 기부금 */
+function editDon(d){editing=d||null;$('#dd-h').textContent=d?`${d.year}년 기부금 내역 수정`:'새 연도 기부금 내역';
+  const y=$('#d-year');y.value=d?.year||new Date().getFullYear();y.disabled=!!d;
+  $('#d-purpose').value=d?.purpose||'';$('#d-text').value=d?.text||'';
+  $('#d-rows').replaceChildren(...[...Array(12)].map((_,i)=>{const m=i+1,r=(d?.rows||[]).find(x=>x.m===m)||{};
+    return h('tr',{},h('td',{text:m+'월'}),
+      h('td',{},h('input',{type:'text',inputmode:'numeric',id:'d-inc-'+m,value:r.inc?won(r.inc):'', 'aria-label':m+'월 수입',placeholder:'0'})),
+      h('td',{},h('input',{type:'text',inputmode:'numeric',id:'d-exp-'+m,value:r.exp?won(r.exp):'', 'aria-label':m+'월 지출',placeholder:'0'})))}));
+  dEd.set(d?.doc?[d.doc]:[]);$('#d-del').hidden=!d;$('#d-msg').textContent='';$('#d-msg').className='msg';$('#d-save').disabled=false;$('#dlg-don').showModal()}
+$('#add-don').onclick=()=>editDon(null);
+$('#edit-don').onclick=()=>editDon(S.donations.find(d=>d.year==S.donYear));
+const num=v=>Number(String(v).replace(/[^\d]/g,''))||0;
+$('#d-rows').addEventListener('change',e=>{if(e.target.tagName==='INPUT'){const n=num(e.target.value);e.target.value=n?won(n):''}});
+$('#f-don').onsubmit=async e=>{e.preventDefault();const msg=$('#d-msg');
+  const year=Number($('#d-year').value);if(!year||year<2000||year>2100){msg.textContent='연도를 바르게 넣어주세요.';msg.className='msg err';return}
+  if(!editing&&S.donations.find(d=>d.year===year)){msg.textContent=`${year}년 내역이 이미 있어요. ‘수정’으로 고쳐주세요.`;msg.className='msg err';return}
+  const rows=[];for(let m=1;m<=12;m++){const inc=num($('#d-inc-'+m).value),exp=num($('#d-exp-'+m).value);if(inc||exp)rows.push({m,inc,exp})}
+  const items=dEd.get();if(items.some(i=>i.file)&&!S.assets){msg.textContent='파일을 올릴 권한이 없어요.';msg.className='msg err';return}
+  $('#d-save').disabled=true;msg.className='msg';
+  try{const up=await uploadAll(items.map(i=>({...i,alt:`${year}년 기부금 명세서 원본`})),msg);msg.textContent='저장 중…';
+    const doc=up[0]||null;
+    await S.db.collection('donations').doc(String(year)).set({year,purpose:$('#d-purpose').value.trim(),text:$('#d-text').value.trim(),rows,doc,updatedAt:Date.now()});
+    if(editing&&editing.doc?.asset&&editing.doc.asset!==doc?.asset){try{await S.assets.delete(editing.doc.asset)}catch(e){}}
+    S.donYear=year;$('#dlg-don').close();toast('기부금 내역을 저장했어요');
+  }catch(err){msg.textContent=errText(err);msg.className='msg err';$('#d-save').disabled=false}};
+(()=>{const b=$('#d-del');let armed=false,t;b.onclick=async()=>{
+  if(!armed){armed=true;b.textContent='한 번 더 누르면 삭제';t=setTimeout(()=>{armed=false;b.textContent='이 연도 삭제'},4000);return}
+  clearTimeout(t);armed=false;b.textContent='이 연도 삭제';
+  try{await removeDoc('donations',String(editing.year),editing.doc?[editing.doc]:[]);$('#dlg-don').close();toast('삭제했어요')}catch(e){$('#d-msg').textContent=errText(e);$('#d-msg').className='msg err'}}})();
+
+/* 관리 모드 전환 */
+const ab=$('#admin-btn');
+function setAdmin(on){document.body.classList.toggle('admin',on);ab.setAttribute('aria-pressed',String(on));ab.textContent=on?'관리 끝내기':'관리';
+  try{sessionStorage.setItem('idf-unlock',on?'1':'')}catch(e){}}
+
+/* 관리자 비밀번호 (PBKDF2 해시만 저장, 편집자만 읽을 수 있는 settings/admin 문서) */
+const b64=a=>btoa(String.fromCharCode(...new Uint8Array(a)));
+const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function hashPw(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);
+  return b64(await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},k,256))}
+let pwMode='enter',pwDoc=null,fails=0,lockUntil=0;
+async function loadPw(){const s=await S.db.doc('settings/admin').get();pwDoc=s.exists?s.data():null;return pwDoc}
+function pwDialog(mode){pwMode=mode;const set=(id,v)=>$(id).hidden=!v;
+  set('#pw-old-l',mode!=='create');set('#pw-new-l',mode!=='enter');set('#pw-new2-l',mode!=='enter');
+  $('#pw-old-l').firstChild.textContent=mode==='enter'?'비밀번호':'현재 비밀번호';
+  $('#pw-h').textContent=mode==='create'?'관리자 비밀번호 만들기':mode==='change'?'비밀번호 바꾸기':'관리자 비밀번호';
+  $('#pw-info').textContent=mode==='create'?'처음 한 번만 만들면 돼요. 다음부터는 관리할 때마다 이 비밀번호를 물어봅니다.':mode==='change'?'':'관리 화면을 열려면 비밀번호를 넣어주세요.';
+  ['#pw-old','#pw-new','#pw-new2'].forEach(i=>$(i).value='');$('#pw-msg').textContent='';$('#pw-msg').className='msg';$('#pw-ok').disabled=false;
+  $('#dlg-pw').showModal();setTimeout(()=>$(mode==='create'?'#pw-new':'#pw-old').focus(),50)}
+const pwErr=t=>{$('#pw-msg').textContent=t;$('#pw-msg').className='msg err'};
+async function checkPw(pw){return pwDoc&&await hashPw(pw,unb64(pwDoc.salt))===pwDoc.hash}
+$('#f-pw').onsubmit=async e=>{e.preventDefault();$('#pw-ok').disabled=true;
+  try{
+    if(pwMode==='enter'||pwMode==='change'){
+      if(Date.now()<lockUntil){pwErr(`잠시 후 다시 해주세요 (${Math.ceil((lockUntil-Date.now())/1000)}초)`);return}
+      await loadPw();
+      if(!await checkPw($('#pw-old').value)){fails++;if(fails>=5){lockUntil=Date.now()+60000;fails=0}pwErr('비밀번호가 맞지 않아요.');return}
+      fails=0;
+      if(pwMode==='enter'){$('#dlg-pw').close();setAdmin(true);toast('관리 화면을 열었어요');return}
+    }
+    const n1=$('#pw-new').value,n2=$('#pw-new2').value;
+    if(n1.length<4){pwErr('새 비밀번호는 4자 이상이어야 해요.');return}
+    if(n1!==n2){pwErr('새 비밀번호 두 칸이 서로 달라요.');return}
+    const salt=crypto.getRandomValues(new Uint8Array(16));
+    await S.db.doc('settings/admin').set({hash:await hashPw(n1,salt),salt:b64(salt),updatedAt:Date.now()});
+    pwDoc=null;$('#dlg-pw').close();
+    if(pwMode==='create'){setAdmin(true);toast('비밀번호를 만들었어요')}else toast('비밀번호를 바꿨어요');
+  }catch(err){pwErr(errText(err))}finally{$('#pw-ok').disabled=false}};
+ab.onclick=async()=>{
+  if(document.body.classList.contains('admin')){setAdmin(false);toast('관리 화면을 닫았어요');return}
+  try{await loadPw()}catch(e){toast('잠시 후 다시 해주세요');return}
+  pwDialog(pwDoc?'enter':'create');
+};
+$('#pw-change').onclick=()=>pwDialog('change');
+
+/* ===== 저장소 연결 ===== */
+(async()=>{
+  const cl=window.claude;if(!cl||!cl.use)return;
+  const db=await cl.use('db');if(!db)return;
+  S.db=db;
+  const user=await cl.use('user');
+  S.canEdit=user?await user.canEdit():false;
+  if(S.canEdit){S.assets=await cl.use('assets');ab.hidden=false;try{if(sessionStorage.getItem('idf-unlock'))setAdmin(true)}catch(e){}}
+  const sub=(col,key,r)=>db.collection(col).onSnapshot(snap=>{S[key]=snap.docs.map(d=>({id:d.id,...d.data()}));S.live=true;r()},()=>{});
+  sub('posts','posts',renderPosts);sub('notices','notices',renderNotices);sub('donations','donations',renderDon);
+})();
+</script>
+
+</body>
+</html>
