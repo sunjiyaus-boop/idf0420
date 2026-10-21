@@ -270,7 +270,7 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
 .ed h3{font-size:1.25rem}
 .ed label{display:flex;flex-direction:column;gap:6px;font-weight:700;color:var(--ink);font-size:.9375rem}
 .ed label small{font-weight:400;color:var(--muted)}
-.ed input[type=text],.ed input[type=date],.ed input[type=month],.ed input[type=number],.ed select,.ed textarea{font:400 1rem var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);width:100%;box-sizing:border-box}
+.ed input[type=text],.ed input[type=email],.ed input[type=password],.ed input[type=date],.ed input[type=month],.ed input[type=number],.ed select,.ed textarea{font:400 1rem var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);width:100%;box-sizing:border-box}
 .ed textarea{min-height:120px;resize:vertical;line-height:1.6}
 .ed .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:500px){.ed .two{grid-template-columns:1fr}}
@@ -472,7 +472,8 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
   <form id="f-pw" novalidate>
     <h3 id="pw-h">관리자 비밀번호</h3>
     <p id="pw-info" style="font-size:.9375rem;color:var(--muted)"></p>
-    <label id="pw-old-l">현재 비밀번호<input type="password" id="pw-old" autocomplete="current-password"></label>
+    <label id="pw-email-l">이메일<input type="email" id="pw-email" autocomplete="username"></label>
+    <label id="pw-old-l">비밀번호<input type="password" id="pw-old" autocomplete="current-password"></label>
     <label id="pw-new-l">새 비밀번호 <small>4자 이상</small><input type="password" id="pw-new" autocomplete="new-password"></label>
     <label id="pw-new2-l">새 비밀번호 확인<input type="password" id="pw-new2" autocomplete="new-password"></label>
     <div class="actions"><span class="msg" id="pw-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="pw-ok">확인</button></div>
@@ -541,6 +542,7 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
   </div>
 </dialog>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 /* ===== 기본 내용 (저장소에 연결되지 않은 화면에서 보여줄 내용) ===== */
 const FALLBACK={
@@ -569,7 +571,7 @@ function h(tag,attrs,...kids){const e=document.createElement(tag);
   for(const k in attrs||{}){const v=attrs[k];if(v==null||v===false)continue;
     if(k==='class')e.className=v;else if(k==='text')e.textContent=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else e.setAttribute(k,v===true?'':v)}
   for(const c of kids.flat()){if(c==null||c===false)continue;e.append(c.nodeType?c:document.createTextNode(c))}return e}
-const src=p=>p.asset?'/_blob/'+p.asset:p.src;
+const src=p=>p.asset?'https://kfyogkvmragrpefsktul.supabase.co/storage/v1/object/public/photos/'+p.asset:p.src;
 const won=n=>(Number(n)||0).toLocaleString('ko-KR');
 const fmtMonth=d=>{const[y,m]=(d||'').split('-');return y?`${y}.${m||''}`:''};
 const fmtDate=d=>(d||'').replaceAll('-','.');
@@ -792,60 +794,73 @@ $('#f-don').onsubmit=async e=>{e.preventDefault();const msg=$('#d-msg');
   try{await removeDoc('donations',String(editing.year),editing.doc?[editing.doc]:[]);$('#dlg-don').close();toast('삭제했어요')}catch(e){$('#d-msg').textContent=errText(e);$('#d-msg').className='msg err'}}})();
 
 /* 관리 모드 전환 */
-const ab=$('#admin-btn');
-function setAdmin(on){document.body.classList.toggle('admin',on);ab.setAttribute('aria-pressed',String(on));ab.textContent=on?'관리 끝내기':'관리';
-  try{sessionStorage.setItem('idf-unlock',on?'1':'')}catch(e){}}
+const ab=$('#admin-btn');ab.hidden=false;
+function setAdmin(on){document.body.classList.toggle('admin',on);ab.setAttribute('aria-pressed',String(on));ab.textContent=on?'관리 끝내기':'관리';}
 
-/* 관리자 비밀번호 (PBKDF2 해시만 저장, 편집자만 읽을 수 있는 settings/admin 문서) */
-const b64=a=>btoa(String.fromCharCode(...new Uint8Array(a)));
-const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-async function hashPw(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);
-  return b64(await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},k,256))}
-let pwMode='enter',pwDoc=null,fails=0,lockUntil=0;
-async function loadPw(){const s=await S.db.doc('settings/admin').get();pwDoc=s.exists?s.data():null;return pwDoc}
-function pwDialog(mode){pwMode=mode;const set=(id,v)=>$(id).hidden=!v;
-  set('#pw-old-l',mode!=='create');set('#pw-new-l',mode!=='enter');set('#pw-new2-l',mode!=='enter');
-  $('#pw-old-l').firstChild.textContent=mode==='enter'?'비밀번호':'현재 비밀번호';
-  $('#pw-h').textContent=mode==='create'?'관리자 비밀번호 만들기':mode==='change'?'비밀번호 바꾸기':'관리자 비밀번호';
-  $('#pw-info').textContent=mode==='create'?'처음 한 번만 만들면 돼요. 다음부터는 관리할 때마다 이 비밀번호를 물어봅니다.':mode==='change'?'':'관리 화면을 열려면 비밀번호를 넣어주세요.';
-  ['#pw-old','#pw-new','#pw-new2'].forEach(i=>$(i).value='');$('#pw-msg').textContent='';$('#pw-msg').className='msg';$('#pw-ok').disabled=false;
-  $('#dlg-pw').showModal();setTimeout(()=>$(mode==='create'?'#pw-new':'#pw-old').focus(),50)}
-const pwErr=t=>{$('#pw-msg').textContent=t;$('#pw-msg').className='msg err'};
-async function checkPw(pw){return pwDoc&&await hashPw(pw,unb64(pwDoc.salt))===pwDoc.hash}
-$('#f-pw').onsubmit=async e=>{e.preventDefault();$('#pw-ok').disabled=true;
+/* ===== Supabase 저장소 ===== */
+const SB_URL='https://kfyogkvmragrpefsktul.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmeW9na3ZtcmFncnBlZnNrdHVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1Njk4MDAsImV4cCI6MjEwODE0NTgwMH0.1yRWYVVMQjYsPyYQPgB1J8I0hQ7F8E41cqU5Yr_sIHQ';
+const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const COLS={posts:['title','date','kind','desc','photos'],notices:['title','date','kind','body','images'],donations:['year','purpose','text','rows','doc']};
+const fromRow=r=>({...r,createdAt:r.created_at,updatedAt:r.updated_at});
+async function refresh(){
+  if(!sb)return;
   try{
-    if(pwMode==='enter'||pwMode==='change'){
-      if(Date.now()<lockUntil){pwErr(`잠시 후 다시 해주세요 (${Math.ceil((lockUntil-Date.now())/1000)}초)`);return}
-      await loadPw();
-      if(!await checkPw($('#pw-old').value)){fails++;if(fails>=5){lockUntil=Date.now()+60000;fails=0}pwErr('비밀번호가 맞지 않아요.');return}
-      fails=0;
-      if(pwMode==='enter'){$('#dlg-pw').close();setAdmin(true);toast('관리 화면을 열었어요');return}
-    }
+    const [p,n,d]=await Promise.all(['posts','notices','donations'].map(t=>sb.from(t).select('*')));
+    if(!p.error)S.posts=p.data.map(fromRow);
+    if(!n.error)S.notices=n.data.map(fromRow);
+    if(!d.error)S.donations=d.data.map(fromRow);
+    S.live=true;renderAll();
+  }catch(e){}
+}
+/* 기존 화면 코드가 쓰는 모양(collection().doc().set/delete)으로 감싸기 */
+S.db={collection(col){return{doc(id){id=id||(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2));return{id,
+  async set(data){const row={id};for(const k of COLS[col])if(k in data)row[k]=data[k];
+    if(col!=='donations')row.created_at=data.createdAt||Date.now();row.updated_at=data.updatedAt||Date.now();
+    const {error}=await sb.from(col).upsert(row);if(error)throw error;await refresh()},
+  async delete(){const {error}=await sb.from(col).delete().eq('id',id);if(error)throw error;await refresh()}}}}}};
+S.assets={
+  async upload(blob,opt){const type=(opt&&opt.type)||blob.type||'image/jpeg';const ext=type.includes('pdf')?'pdf':type.includes('png')?'png':type.includes('webp')?'webp':'jpg';
+    const path=`${new Date().toISOString().slice(0,7)}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+    const {error}=await sb.storage.from('photos').upload(path,blob,{contentType:type,upsert:false});if(error)throw error;
+    return{id:path,contentType:type}},
+  async delete(path){await sb.storage.from('photos').remove([path])}
+};
+
+/* 로그인 / 비밀번호 */
+let pwMode='login';
+function pwDialog(mode){pwMode=mode;const set=(id,v)=>$(id).hidden=!v;
+  set('#pw-email-l',mode==='login');set('#pw-old-l',mode==='login');set('#pw-new-l',mode==='change');set('#pw-new2-l',mode==='change');
+  $('#pw-old-l').firstChild.textContent='비밀번호';
+  $('#pw-h').textContent=mode==='change'?'비밀번호 바꾸기':'관리자 로그인';
+  $('#pw-info').textContent=mode==='change'?'새 비밀번호를 두 번 넣어주세요.':'관리자 이메일과 비밀번호로 로그인하세요.';
+  ['#pw-email','#pw-old','#pw-new','#pw-new2'].forEach(i=>$(i).value='');$('#pw-msg').textContent='';$('#pw-msg').className='msg';$('#pw-ok').disabled=false;
+  $('#dlg-pw').showModal();setTimeout(()=>$(mode==='login'?'#pw-email':'#pw-new').focus(),50)}
+const pwErr=t=>{$('#pw-msg').textContent=t;$('#pw-msg').className='msg err'};
+$('#f-pw').onsubmit=async e=>{e.preventDefault();if(!sb){pwErr('저장소에 연결하지 못했어요. 잠시 후 다시 해주세요.');return}
+  $('#pw-ok').disabled=true;
+  try{
+    if(pwMode==='login'){
+      const {error}=await sb.auth.signInWithPassword({email:$('#pw-email').value.trim(),password:$('#pw-old').value});
+      if(error){pwErr('이메일 또는 비밀번호가 맞지 않아요.');return}
+      $('#dlg-pw').close();S.canEdit=true;renderAll();setAdmin(true);toast('관리 화면을 열었어요');return}
     const n1=$('#pw-new').value,n2=$('#pw-new2').value;
-    if(n1.length<4){pwErr('새 비밀번호는 4자 이상이어야 해요.');return}
+    if(n1.length<8){pwErr('새 비밀번호는 8자 이상이어야 해요.');return}
     if(n1!==n2){pwErr('새 비밀번호 두 칸이 서로 달라요.');return}
-    const salt=crypto.getRandomValues(new Uint8Array(16));
-    await S.db.doc('settings/admin').set({hash:await hashPw(n1,salt),salt:b64(salt),updatedAt:Date.now()});
-    pwDoc=null;$('#dlg-pw').close();
-    if(pwMode==='create'){setAdmin(true);toast('비밀번호를 만들었어요')}else toast('비밀번호를 바꿨어요');
-  }catch(err){pwErr(errText(err))}finally{$('#pw-ok').disabled=false}};
+    const {error}=await sb.auth.updateUser({password:n1});if(error){pwErr('바꾸지 못했어요. 다시 로그인한 뒤 해주세요.');return}
+    $('#dlg-pw').close();toast('비밀번호를 바꿨어요');
+  }catch(err){pwErr('잠시 후 다시 해주세요.')}finally{$('#pw-ok').disabled=false}};
 ab.onclick=async()=>{
-  if(document.body.classList.contains('admin')){setAdmin(false);toast('관리 화면을 닫았어요');return}
-  try{await loadPw()}catch(e){toast('잠시 후 다시 해주세요');return}
-  pwDialog(pwDoc?'enter':'create');
+  if(document.body.classList.contains('admin')){if(sb)await sb.auth.signOut();S.canEdit=false;setAdmin(false);renderAll();toast('로그아웃했어요');return}
+  pwDialog('login');
 };
 $('#pw-change').onclick=()=>pwDialog('change');
 
-/* ===== 저장소 연결 ===== */
+/* 시작 */
 (async()=>{
-  const cl=window.claude;if(!cl||!cl.use)return;
-  const db=await cl.use('db');if(!db)return;
-  S.db=db;
-  const user=await cl.use('user');
-  S.canEdit=user?await user.canEdit():false;
-  if(S.canEdit){S.assets=await cl.use('assets');ab.hidden=false;try{if(sessionStorage.getItem('idf-unlock'))setAdmin(true)}catch(e){}}
-  const sub=(col,key,r)=>db.collection(col).onSnapshot(snap=>{S[key]=snap.docs.map(d=>({id:d.id,...d.data()}));S.live=true;r()},()=>{});
-  sub('posts','posts',renderPosts);sub('notices','notices',renderNotices);sub('donations','donations',renderDon);
+  if(!sb)return;
+  try{const {data}=await sb.auth.getSession();if(data&&data.session){S.canEdit=true;setAdmin(true)}}catch(e){}
+  await refresh();
 })();
 </script>
 
