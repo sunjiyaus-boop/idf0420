@@ -64,7 +64,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background
 .brand small{display:block;font-size:.6875rem;color:var(--muted);letter-spacing:.04em}
 nav.main{margin-left:auto}
 nav.main ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
-nav.main a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:500;font-size:.96875rem}
+nav.main a{display:block;white-space:nowrap;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:500;font-size:.96875rem}
 nav.main a:hover{background:var(--accent-soft);color:var(--accent)}
 .tools{display:flex;align-items:center;gap:4px;flex-shrink:0}
 .fs{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
@@ -72,7 +72,7 @@ nav.main a:hover{background:var(--accent-soft);color:var(--accent)}
 .fs button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
 .fs button:nth-child(1){font-size:.8125rem}.fs button:nth-child(2){font-size:.9375rem}.fs button:nth-child(3){font-size:1.0625rem}
 .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;font:700 .9375rem var(--body);cursor:pointer}
-@media (max-width:1020px){
+@media (max-width:1200px){
   .menu-btn{display:block}
   nav.main{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);display:none}
   nav.main.open{display:block}
@@ -98,7 +98,8 @@ nav.main a:hover{background:var(--accent-soft);color:var(--accent)}
   .don-sum b{font-size:1.5rem}
   .info > div{grid-template-columns:60px minmax(0,1fr)}
 }
-@media (max-width:360px){.fs button:nth-child(2){display:none}}
+@media (max-width:430px){.fs button:nth-child(2){display:none}.brand b{font-size:.9375rem}.brand img{width:30px;height:30px}}
+@media (max-width:360px){.brand b{font-size:.875rem}}
 /* 휴대폰에서 누르기 쉬운 크기 */
 @media (pointer:coarse){.filters button,.row-tools button,.mini,.copy{min-height:40px;padding-inline:14px}.lb button{min-height:44px}}
 
@@ -270,7 +271,7 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
 .ed h3{font-size:1.25rem}
 .ed label{display:flex;flex-direction:column;gap:6px;font-weight:700;color:var(--ink);font-size:.9375rem}
 .ed label small{font-weight:400;color:var(--muted)}
-.ed input[type=text],.ed input[type=email],.ed input[type=password],.ed input[type=date],.ed input[type=month],.ed input[type=number],.ed select,.ed textarea{font:400 1rem var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);width:100%;box-sizing:border-box}
+.ed input[type=url],.ed input[type=text],.ed input[type=email],.ed input[type=password],.ed input[type=date],.ed input[type=month],.ed input[type=number],.ed select,.ed textarea{font:400 1rem var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);width:100%;box-sizing:border-box}
 .ed textarea{min-height:120px;resize:vertical;line-height:1.6}
 .ed .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:500px){.ed .two{grid-template-columns:1fr}}
@@ -289,6 +290,27 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
 .mtbl td,.mtbl th{padding:6px 8px}
 .mtbl input{width:120px;text-align:right;padding:6px 8px!important}
 .note-up{font-size:.8125rem;color:var(--muted)}
+/* 언론보도 */
+.press{display:flex;flex-direction:column;border-top:2px solid var(--ink);list-style:none;margin:0;padding:0}
+.press > li{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:24px;padding:24px 4px;border-bottom:1px solid var(--line);align-items:start}
+.press .meta-line{display:flex;gap:10px;flex-wrap:wrap;font-size:.875rem;color:var(--muted)}
+.press .src{color:var(--accent);font-weight:700}
+.press h3{margin:6px 0 10px;font-size:1.1875rem}
+.press h3 a{color:var(--ink);text-decoration:none}
+.press h3 a:hover{text-decoration:underline}
+.press .sum{white-space:pre-line;max-width:46em}
+.press .go{display:inline-block;margin-top:10px;font-weight:700;font-size:.9375rem}
+.press img{width:180px;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+@media (max-width:640px){.press > li{grid-template-columns:1fr}.press img{width:100%;order:-1}}
+.help-ai{font-size:.875rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+/* 관련 사이트 */
+.links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.links a{display:flex;flex-direction:column;gap:2px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--ink);height:100%;box-sizing:border-box}
+.links a:hover{border-color:var(--accent)}
+.links b{font-size:1.0625rem}
+.links span{font-size:.8125rem;color:var(--muted);word-break:break-all}
+@media (max-width:900px){.links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:380px){.links{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -309,6 +331,7 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
         <li><a href="#about">단체소개</a></li>
         <li><a href="#history">연혁</a></li>
         <li><a href="#news">활동소식</a></li>
+        <li><a href="#press">언론보도</a></li>
         <li><a href="#notice">공지사항</a></li>
         <li><a href="#donation">기부금 공개</a></li>
         <li><a href="#location">오시는 길</a></li>
@@ -420,6 +443,14 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
   </div>
 </section>
 
+<section class="sec" id="press">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">PRESS</span><h2>언론보도</h2></div>
+    <div class="admin-bar admin-only"><button type="button" class="add-btn" id="add-art">+ 기사 올리기</button><p>기사 링크와 요약을 붙여 넣으면 돼요. 휴대폰에서도 됩니다.</p></div>
+    <ul class="press" id="press-list"></ul>
+  </div>
+</section>
+
 <section class="sec" id="notice">
   <div class="wrap">
     <div class="sec-head"><span class="label">NOTICE</span><h2>공지사항</h2></div>
@@ -459,6 +490,21 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
     </div>
   </div>
 </section>
+<section class="sec" id="links">
+  <div class="wrap">
+    <div class="sec-head"><span class="label">LINKS</span><h2>관련 사이트</h2></div>
+    <ul class="links">
+      <li><a href="https://www.mohw.go.kr" target="_blank" rel="noopener"><b>보건복지부</b><span>mohw.go.kr</span></a></li>
+      <li><a href="https://www.mois.go.kr" target="_blank" rel="noopener"><b>행정안전부</b><span>mois.go.kr</span></a></li>
+      <li><a href="https://www.mofe.go.kr" target="_blank" rel="noopener"><b>재정경제부</b><span>구 기획재정부 · mofe.go.kr</span></a></li>
+      <li><a href="https://www.nts.go.kr" target="_blank" rel="noopener"><b>국세청</b><span>nts.go.kr</span></a></li>
+      <li><a href="https://www.police.go.kr" target="_blank" rel="noopener"><b>경찰청</b><span>police.go.kr</span></a></li>
+      <li><a href="https://son.ai.kr/" target="_blank" rel="noopener"><b>국제장애인신문</b><span>son.ai.kr</span></a></li>
+      <li><a href="https://www.incheon.go.kr" target="_blank" rel="noopener"><b>인천광역시</b><span>incheon.go.kr</span></a></li>
+      <li><a href="https://sondental.co.kr" target="_blank" rel="noopener"><b>연세손치과</b><span>협력기관 · sondental.co.kr</span></a></li>
+    </ul>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -477,6 +523,23 @@ dialog.ed::backdrop{background:rgba(6,10,20,.6)}
     <label id="pw-new-l">새 비밀번호 <small>4자 이상</small><input type="password" id="pw-new" autocomplete="new-password"></label>
     <label id="pw-new2-l">새 비밀번호 확인<input type="password" id="pw-new2" autocomplete="new-password"></label>
     <div class="actions"><span class="msg" id="pw-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="pw-ok">확인</button></div>
+  </form>
+</dialog>
+
+<dialog class="ed" id="dlg-art" aria-labelledby="da-h">
+  <form id="f-art" novalidate>
+    <h3 id="da-h">기사 올리기</h3>
+    <label>기사 링크 <small>(원문 주소)</small><input type="url" id="a-url" placeholder="https://" inputmode="url"></label>
+    <label>제목<input type="text" id="a-title" required></label>
+    <div class="two">
+      <label>언론사<input type="text" id="a-src" placeholder="예: 인천일보"></label>
+      <label>날짜<input type="date" id="a-date" required></label>
+    </div>
+    <label>요약<textarea id="a-sum" placeholder="기사 핵심 내용을 3~5줄로"></textarea></label>
+    <p class="help-ai">AI 요약 쓰는 법: 휴대폰 Claude 앱에 기사 링크를 붙여 넣고 "인천장애인연합회 홈페이지용으로 3줄 요약해줘"라고 한 뒤, 답을 길게 눌러 복사해서 위 '요약' 칸에 붙여 넣으세요.</p>
+    <label>대표 사진 <small>(선택)</small><input type="file" id="a-file" accept="image/*"></label>
+    <div class="thumbs" id="a-thumbs"></div>
+    <div class="actions"><span class="msg" id="a-msg"></span><button type="button" class="cancel" data-close>취소</button><button type="submit" class="add-btn" id="a-save">저장</button></div>
   </form>
 </dialog>
 
@@ -578,7 +641,7 @@ const fmtDate=d=>(d||'').replaceAll('-','.');
 function toast(t){const d=h('div',{class:'toast',role:'status',text:t});document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
 
 /* ===== 상태 ===== */
-const S={posts:FALLBACK.posts,notices:FALLBACK.notices,donations:FALLBACK.donations,live:false,canEdit:false,db:null,assets:null,year:'all',donYear:null};
+const S={articles:[],posts:FALLBACK.posts,notices:FALLBACK.notices,donations:FALLBACK.donations,live:false,canEdit:false,db:null,assets:null,year:'all',donYear:null};
 
 /* ===== 활동소식 ===== */
 function renderPosts(){
@@ -655,7 +718,25 @@ function renderDon(){
         h('span',{text:'명세서 원본 (눌러서 크게 보기)'})):null));
 }
 
-function renderAll(){renderPosts();renderNotices();renderDon()}
+/* ===== 언론보도 ===== */
+function renderArticles(){
+  const list=[...S.articles].sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.createdAt||0)-(a.createdAt||0));
+  const ul=$('#press-list');
+  const sec=$('#press');sec.hidden=!list.length&&!S.canEdit;
+  document.querySelector('a[href="#press"]').parentElement.hidden=sec.hidden;
+  if(!list.length){ul.replaceChildren(h('li',{class:'empty',style:'display:block',text:'아직 올린 기사가 없어요. 위의 ‘+ 기사 올리기’로 첫 기사를 올려보세요.'}));return}
+  const safe=u=>/^https?:\/\//i.test(u||'')?u:null;
+  ul.replaceChildren(...list.map(a=>{const link=safe(a.url);const ph=(a.photos||[])[0];
+    return h('li',{},
+      h('div',{style:'min-width:0'},
+        h('div',{class:'meta-line'},a.source?h('span',{class:'src',text:a.source}):null,h('span',{text:fmtDate(a.date)})),
+        h('h3',{},link?h('a',{href:link,target:'_blank',rel:'noopener',text:a.title}):a.title),
+        a.summary?h('p',{class:'sum',text:a.summary}):null,
+        link?h('a',{class:'go',href:link,target:'_blank',rel:'noopener',text:'원문 기사 보기 →'}):null,
+        S.canEdit?h('div',{class:'row-tools admin-only',style:'margin-top:10px'},h('button',{type:'button',text:'수정',onclick:()=>editArticle(a)}),delBtn(()=>removeDoc('articles',a.id,a.photos))):null),
+      ph?h('img',{src:src(ph),alt:ph.alt||a.title,loading:'lazy'}):null)}));
+}
+function renderAll(){renderPosts();renderArticles();renderNotices();renderDon()}
 renderAll();
 
 /* ===== 사진 크게 보기 ===== */
@@ -746,6 +827,24 @@ $('#f-post').onsubmit=async e=>{e.preventDefault();const msg=$('#p-msg');
     $('#dlg-post').close();toast(editing?'수정했어요':'활동소식을 올렸어요');
   }catch(err){msg.textContent=errText(err);msg.className='msg err';$('#p-save').disabled=false}};
 
+/* 언론보도 */
+const aEd=photoEditor($('#a-file'),$('#a-thumbs'),true);
+function editArticle(a){editing=a||null;$('#da-h').textContent=a?'기사 수정':'기사 올리기';
+  $('#a-url').value=a?.url||'';$('#a-title').value=a?.title||'';$('#a-src').value=a?.source||'';$('#a-date').value=a?.date||today();$('#a-sum').value=a?.summary||'';
+  aEd.set(a?.photos);$('#a-msg').textContent='';$('#a-msg').className='msg';$('#a-save').disabled=false;$('#dlg-art').showModal()}
+$('#add-art').onclick=()=>editArticle(null);
+$('#f-art').onsubmit=async e=>{e.preventDefault();const msg=$('#a-msg');
+  const title=$('#a-title').value.trim(),date=$('#a-date').value,url=$('#a-url').value.trim();
+  if(!title||!date){msg.textContent='제목과 날짜를 넣어주세요.';msg.className='msg err';return}
+  if(url&&!/^https?:\/\//i.test(url)){msg.textContent='기사 링크는 http:// 또는 https:// 로 시작해야 해요.';msg.className='msg err';return}
+  $('#a-save').disabled=true;msg.className='msg';
+  try{const photos=await uploadAll(aEd.get().map(i=>({...i,alt:title})),msg);msg.textContent='저장 중…';
+    const ref=editing?S.db.collection('articles').doc(editing.id):S.db.collection('articles').doc();
+    await ref.set({title,date,url,source:$('#a-src').value.trim(),summary:$('#a-sum').value.trim(),photos,createdAt:editing?.createdAt||Date.now(),updatedAt:Date.now()});
+    if(editing)for(const f of removedAssets(editing.photos,photos)){try{await S.assets.delete(f.asset)}catch(e){}}
+    $('#dlg-art').close();toast(editing?'수정했어요':'기사를 올렸어요');
+  }catch(err){msg.textContent=errText(err);msg.className='msg err';$('#a-save').disabled=false}};
+
 /* 공지 */
 function editNotice(n){editing=n||null;$('#dn-h').textContent=n?'공지 수정':'공지 쓰기';
   $('#n-title').value=n?.title||'';$('#n-date').value=n?.date||today();$('#n-kind').value=n?.kind||'안내';$('#n-body').value=n?.body||'';
@@ -801,12 +900,13 @@ function setAdmin(on){document.body.classList.toggle('admin',on);ab.setAttribute
 const SB_URL='https://kfyogkvmragrpefsktul.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmeW9na3ZtcmFncnBlZnNrdHVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1Njk4MDAsImV4cCI6MjEwODE0NTgwMH0.1yRWYVVMQjYsPyYQPgB1J8I0hQ7F8E41cqU5Yr_sIHQ';
 const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
-const COLS={posts:['title','date','kind','desc','photos'],notices:['title','date','kind','body','images'],donations:['year','purpose','text','rows','doc']};
+const COLS={articles:['title','date','url','source','summary','photos'],posts:['title','date','kind','desc','photos'],notices:['title','date','kind','body','images'],donations:['year','purpose','text','rows','doc']};
 const fromRow=r=>({...r,createdAt:r.created_at,updatedAt:r.updated_at});
 async function refresh(){
   if(!sb)return;
   try{
-    const [p,n,d]=await Promise.all(['posts','notices','donations'].map(t=>sb.from(t).select('*')));
+    const [p,n,d,a]=await Promise.all(['posts','notices','donations','articles'].map(t=>sb.from(t).select('*')));
+    if(!a.error)S.articles=a.data.map(fromRow);
     if(!p.error)S.posts=p.data.map(fromRow);
     if(!n.error)S.notices=n.data.map(fromRow);
     if(!d.error)S.donations=d.data.map(fromRow);
